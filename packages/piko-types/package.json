@@ -1,0 +1,9 @@
+{
+  "name": "@pikopiko/piko-types",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    ".": "./src/types.ts"
+  },
+  "types": "./src/types.ts"
+}

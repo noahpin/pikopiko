@@ -1,14 +1,30 @@
-<script>
-    import {dev} from "$app/environment";
+<script lang="ts">
+    import { goto } from "$app/navigation";
     import Button from "$lib/components/Button.svelte";
-    import PartySocket from "partysocket";
+    function generateID() {
+      let length = 4;
+      let chars = "abcdefghijklmnopqrstuvwxyz"
+      let str = "";
+      for(let i = 0; i < length; i++) {
+        str += chars[Math.floor(Math.random() * chars.length)]
+      }
+      return str.toUpperCase()
+    }
+    function hostGame() {
+      console.log(generateID())
+      goto("/" + generateID());
+    }
+    let code = $state("")
+    function joinGame() {
+      
+      goto("/" + code.toUpperCase());
+    }
 
-    const ws = new PartySocket({
-      host: dev ? "localhost:8787" : "party.pikopiko.xyz",
-      room: "roomba",
-      party: "piko-server"
-    })
-
+    function keyDown(e: KeyboardEvent) {
+      if(e.key === "Enter") {
+        joinGame();
+      }
+    }
 </script>
 
 <div class="homepage-layout">
@@ -17,11 +33,11 @@
         <h2>a party game(s)</h2>
     </div>
     <div class="homepage-options">
-        <Button>host game</Button>
+        <Button looptext="host→" onclick={hostGame}>host game →</Button>
         <div class="input-button">
             
-            <input placeholder="game code" type="text">
-            <Button>join game</Button>
+            <input onkeyup={keyDown } bind:value={code} placeholder="game code" type="text">
+            <Button looptext="join→" onclick={joinGame}>join game →</Button>
         </div>
     </div>
 </div>
@@ -55,5 +71,11 @@
         justify-content: center;
         flex-direction: column;
         gap: 20px;
+    }
+    input[type="text"] {
+        text-transform: uppercase;
+    }
+    input[type="text"]::placeholder {
+        text-transform: lowercase;
     }
 </style>

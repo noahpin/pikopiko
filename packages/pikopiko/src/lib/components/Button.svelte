@@ -1,6 +1,6 @@
 <script lang="ts">
     import chroma from "chroma-js";
-    let {children, onclick = ()=>{}}: {children: any, onclick?: any} = $props();
+    let {children, looptext="", onclick = ()=>{}}: {children: any, looptext?: string, onclick?: any} = $props();
     let hover = $state(false);
     let bgCol = $state("#000")
     let textCol = $state("#fff")
@@ -20,14 +20,42 @@
     }
 </script>
 
-<button onclick={onclick} style:--bg={bgCol} style:--text={textCol} class:hover={hover} onmouseover={over} onmouseout={out} onfocus={()=>{}} onblur={()=>{}}>
+<button class:loop-hover={looptext != ""} onclick={()=>{over(); onclick();}} style:--bg={bgCol} style:--text={textCol} class:hover={hover} onmouseover={over} onmouseout={out} onfocus={()=>{}} onblur={()=>{}}>
+    <div class="looptext">{#each new Array(20) as _}{looptext}{/each}</div>
     {@render children()}
 </button>
 
 <style>
+    button {
+        position: relative;
+        overflow: hidden;
+    }
     button.hover {
         background: var(--bg);
         color: var(--text)
+    }
+    .loop-hover.hover {
+        color: transparent;
+    }
+    .hover .looptext {
+        opacity: 1;
+    }
+    .looptext {
+        position: absolute;
+        animation: 1s linear infinite running infin;
+        color: var(--text);
+        pointer-events: none;
+        opacity: 0;
+        line-height: 0;
+        top: 50%;
+    }
+    @keyframes infin {
+        0% {
+            transform: translateX(-15%);
+        }
+        100% {
+            transform: translateX(-5%);
+        }
     }
 
     

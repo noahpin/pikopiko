@@ -1,0 +1,17 @@
+{
+  "name": "@pikopiko/pikoserver",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "partykit dev --live",
+    "deploy": "partykit deploy"
+  },
+  "dependencies": {
+    "@pikopiko/piko-types": "^0.0.0",
+    "partyserver": "^0.5.8",
+    "partysocket": "^1.0.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4"
+  }
+}
