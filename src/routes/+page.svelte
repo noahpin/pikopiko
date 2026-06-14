@@ -4,7 +4,7 @@
     import PartySocket from "partysocket";
 
     const ws = new PartySocket({
-      host: dev ? "localhost:8787" : "party.pikopiko.xyz",
+      host: dev ? "localhost:8787" : "pikoserver.gamerpenguin2005.workers.dev",
       room: "roomba",
       party: "piko-server"
     })
