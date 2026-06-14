@@ -1,0 +1,72 @@
+@import url("./fonts/fonts.css");
+
+body,
+html {
+    margin: 0;
+    font-size: 18px;
+    font-family: "Heal The Web A";
+}
+* {
+    font-family: "Heal The Web A";
+}
+
+
+h1 {
+    font-size: 80px;
+    margin: 0;
+    background: white;
+    width: fit-content;
+    font-family: "Getai";
+}
+h2 {
+    font-weight: normal;
+    margin: 0;
+    background: white;
+    width: fit-content;
+}
+button {
+    font-size: 26px;
+    padding: 10px 16px;
+    border: 2px solid black;
+    border-radius: 0;
+    cursor: pointer;
+    margin:0;
+    flex-shrink: 0;
+    background: white;
+}
+
+.input-button {
+    width: 100%;
+    background: red;
+    display: flex;
+}
+.input-button input {
+    width: 100%;
+    border-right: none !important;
+}
+
+input[type="text"] {
+    border: 2px solid black;
+    outline: none;
+    font-size: 26px;
+    padding: 10px 16px;
+    
+}
+
+
+@media (max-width: 450px) {
+    h1 {
+        font-size: 60px;
+    }
+    h2 {
+        font-size: 24px;
+    }
+    button {
+        font-size: 24px;
+    }
+    
+    input[type="text"] {
+        font-size: 24px;
+        
+    }
+}
