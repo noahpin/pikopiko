@@ -1,31 +1,24 @@
-import type * as Party from "partykit/server";
+import { routePartykitRequest, Server, Connection, WSMessage } from "partyserver";
 
-export default class Server implements Party.Server {
-  constructor(readonly room: Party.Room) {}
-
-  onConnect(conn: Party.Connection, ctx: Party.ConnectionContext) {
-    // A websocket just connected!
-    console.log(
-      `Connected:
-  id: ${conn.id}
-  room: ${this.room.id}
-  url: ${new URL(ctx.request.url).pathname}`
-    );
-
-    // let's send a message to the connection
-    conn.send("hello from server");
+// Define your Server
+export class PikoServer extends Server {
+  onConnect(connection: Connection) {
+    console.log("Connected", connection.id, "to server", this.name);
   }
 
-  onMessage(message: string, sender: Party.Connection) {
-    // let's log the message
-    console.log(`connection ${sender.id} sent message: ${message}`);
-    // as well as broadcast it to all the other connections in the room...
-    this.room.broadcast(
-      `${sender.id}: ${message}`,
-      // ...except for the connection it came from
-      [sender.id]
-    );
+  onMessage(connection: Connection, message: WSMessage) {
+    console.log("Message from", connection.id, ":", message);
+    // Send the message to every other connection
+    this.broadcast(message, [connection.id]);
   }
 }
 
-Server satisfies Party.Worker;
+export default {
+  // Set up your fetch handler to use configured Servers
+  async fetch(request: Request, env: Env): Promise<Response> {
+    return (
+      (await routePartykitRequest(request, env)) ||
+      new Response("Not Found", { status: 404 })
+    );
+  }
+} satisfies ExportedHandler<Env>;

@@ -4,8 +4,9 @@
     import PartySocket from "partysocket";
 
     const ws = new PartySocket({
-      host: dev ? "localhost:1999" : "pikopiko.noahp.partykit.dev",
+      host: dev ? "localhost:8787" : "party.pikopiko.xyz",
       room: "roomba",
+      party: "piko-server"
     })
 
 </script>
@@ -28,7 +29,7 @@
 <style>
     .homepage-layout {
         width: 90%;
-        max-width: 1000px;
+        max-width: 970px;
         height: 100%;
         display: flex;
         justify-content: space-around;
@@ -36,7 +37,7 @@
         align-content: center;
         margin: auto;
         flex-wrap: wrap;
-        gap: 20px 150px;
+        gap: 20px 140px;
         box-sizing: border-box;
     }
     .hero-content {

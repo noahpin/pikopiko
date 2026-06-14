@@ -17,16 +17,17 @@
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
 		"@types/chroma-js": "^3.1.2",
 		"@types/noisejs": "^2.1.0",
-		"partykit": "0.0.115",
 		"svelte": "^5.56.1",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.0.16",
+		"wrangler": "^4.100.0"
 	},
 	"dependencies": {
 		"@sveltejs/adapter-static": "^3.0.10",
 		"chroma-js": "^3.2.0",
 		"noisejs": "^2.1.0",
+		"partyserver": "^0.5.8",
 		"partysocket": "1.2.0"
 	}
 }
